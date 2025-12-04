@@ -46,3 +46,14 @@ export const getMessagebyChatId = async(req, res) =>{
         return res.status(500).json({message: "Something went wrong",error})
     }
 }
+export const deleteMessage = async (req, res) =>{
+    try{
+        const {messageId} = req.params
+
+        await Message.findByIdAndDelete({messageId})
+        
+        return res.status(200).json({message : "Message Deleted"})
+    }catch(error){
+        res.status(500).json({message : "Something went wrong"})
+    }
+}
