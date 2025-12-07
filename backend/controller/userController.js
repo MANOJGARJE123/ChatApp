@@ -51,18 +51,19 @@ export const searchUser = async(req, res) =>{
     }
 }
 
-export const updateUser = async(req, res) =>{
-    try{
-        const{name, email, profilePic} = req.body;
+export const updateUser = async (req, res) => {
+  try {
+    const { name, email, profilePic } = req.body;
 
-        const updatedUser = await User.findByIdIdAndUpdate(
-             req.user.id,
-             {name, email},
-             {new: true}
-            ).select("-password")
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,                
+      { name, email, profilePic }, 
+      { new: true }
+    ).select("-password");
 
-            res.status(200).json(updatedUser);
-    }catch(error){
-        res.status(500).json({ message: error.message });
-    }
-}
+    res.status(200).json(updatedUser);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
