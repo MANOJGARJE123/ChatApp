@@ -22,7 +22,7 @@ export const getAllUsers = async(req, res) =>{
         res.status(500).json({ message: "No user are there" });
     }
 }
-export const getUserByid = async(req, res) =>{
+export const getUserById = async(req, res) =>{
     try{
         const {id} = req.params
 
